@@ -10,4 +10,9 @@
 
 @interface TimerViewController : UIViewController
 
+
+
+
+- (void)updateTimerLabel;
+
 @end

@@ -7,10 +7,13 @@
 //
 
 #import "POTimer.h"
+#import "TimerViewController.h"
+
+
 
 @interface POTimer ()
 
-@property (nonatomic) BOOL isOn;
+
 
 - (void)endTimer;
 - (void)decreaseSecond;
@@ -36,7 +39,10 @@
 
 - (void)cancelTimer {
     self.isOn = NO;
-//    [NSObject cancelPreviousPerformRequestsWithTarget:<#(id)#>]
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(decreaseSecond) object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:disableButton object:nil];
+    TimerViewController *timerViewController = [TimerViewController new];
+    [timerViewController updateTimerLabel];
 }
 
 - (void)endTimer {

@@ -8,10 +8,12 @@
 
 #import "TimerViewController.h"
 #import "POTimer.h"
+#import "RoundsViewController.h"
 
 @interface TimerViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UIButton *timerButton;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 
 @end
 
@@ -25,13 +27,31 @@
     } return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateTimerLabel];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+//    RoundsViewController *roundsView = [[RoundsViewController alloc]
+//                                        init];
+//    
+//    [roundsView setCurrentRound:0];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"secondTickNotification" object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"currentRoundNotification" object:nil];
+    
 }
+
 - (IBAction)timerAction:(UIButton *)sender {
     [[POTimer sharedInstance] startTimer];
     self.timerButton.enabled = NO;
+}
+- (IBAction)pauseButton:(id)sender {
+    [[POTimer sharedInstance] cancelTimer];
+    self.timerButton.enabled = YES;
 }
 
 - (void)updateTimerLabel {
@@ -43,6 +63,18 @@
 
 - (void)registerForNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTimerLabel) name:@"secondTickNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableEnableButton) name:disableButton object:nil];
+    
+}
+
+-(void)disableEnableButton {
+    self.timerButton.enabled = YES;
+}
+
+- (void)newRound {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(roundSelected) name:@"currentRoundNotification" object:nil];
+    [self updateTimerLabel];
+//    self.timerButton.enabled = YES;
 }
 
 - (void)didReceiveMemoryWarning {

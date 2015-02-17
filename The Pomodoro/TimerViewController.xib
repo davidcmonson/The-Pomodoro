@@ -3,11 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimerViewController">
             <connections>
+                <outlet property="pauseButton" destination="nzB-se-iD1" id="KD4-uP-vP6"/>
                 <outlet property="timerButton" destination="SnH-iZ-8bX" id="wAC-pv-PqC"/>
                 <outlet property="timerLabel" destination="fTe-ew-N7w" id="ADt-ZF-KAm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -41,7 +43,7 @@
                         <action selector="timerAction:" destination="-1" eventType="touchUpInside" id="cb6-mO-7Y1"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTe-ew-N7w">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTe-ew-N7w">
                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="112" id="m5i-hI-w7X"/>
@@ -60,11 +62,23 @@
                         </mask>
                     </variation>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzB-se-iD1">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="Pause">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pauseButton:" destination="-1" eventType="touchUpInside" id="woS-F8-N7u"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="SnH-iZ-8bX" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="AgQ-EB-eUC"/>
+                <constraint firstItem="nzB-se-iD1" firstAttribute="leading" secondItem="SnH-iZ-8bX" secondAttribute="leading" id="OjN-Rn-blj"/>
                 <constraint firstItem="fTe-ew-N7w" firstAttribute="trailing" secondItem="SnH-iZ-8bX" secondAttribute="trailing" id="fkw-Vh-FLX"/>
+                <constraint firstItem="nzB-se-iD1" firstAttribute="trailing" secondItem="SnH-iZ-8bX" secondAttribute="trailing" id="hQX-3q-0oz"/>
+                <constraint firstItem="nzB-se-iD1" firstAttribute="top" secondItem="SnH-iZ-8bX" secondAttribute="bottom" constant="33" id="ho3-0S-vrj"/>
                 <constraint firstItem="SnH-iZ-8bX" firstAttribute="top" secondItem="fTe-ew-N7w" secondAttribute="bottom" constant="52" id="neH-cz-VEL"/>
                 <constraint firstItem="SnH-iZ-8bX" firstAttribute="leading" secondItem="fTe-ew-N7w" secondAttribute="leading" id="oTC-ST-mau"/>
                 <constraint firstItem="fTe-ew-N7w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="ujZ-fL-wPg"/>
@@ -74,6 +88,7 @@
                 <mask key="subviews">
                     <exclude reference="SnH-iZ-8bX"/>
                     <exclude reference="fTe-ew-N7w"/>
+                    <exclude reference="nzB-se-iD1"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="fkw-Vh-FLX"/>
@@ -82,12 +97,16 @@
                     <exclude reference="AgQ-EB-eUC"/>
                     <exclude reference="neH-cz-VEL"/>
                     <exclude reference="oTC-ST-mau"/>
+                    <exclude reference="OjN-Rn-blj"/>
+                    <exclude reference="hQX-3q-0oz"/>
+                    <exclude reference="ho3-0S-vrj"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="SnH-iZ-8bX"/>
                     <include reference="fTe-ew-N7w"/>
+                    <include reference="nzB-se-iD1"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="fkw-Vh-FLX"/>
@@ -96,6 +115,9 @@
                     <include reference="AgQ-EB-eUC"/>
                     <include reference="neH-cz-VEL"/>
                     <include reference="oTC-ST-mau"/>
+                    <include reference="OjN-Rn-blj"/>
+                    <include reference="hQX-3q-0oz"/>
+                    <include reference="ho3-0S-vrj"/>
                 </mask>
             </variation>
         </view>

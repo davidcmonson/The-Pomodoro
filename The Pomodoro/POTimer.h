@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *disableButton = @"disableButton";
+
 @interface POTimer : NSObject
 
 @property (nonatomic, assign)NSInteger minutes;
 @property (nonatomic, assign)NSInteger seconds;
-
+@property (nonatomic) BOOL isOn;
 
 + (POTimer *)sharedInstance;
 

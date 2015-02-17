@@ -8,12 +8,12 @@
 
 #import "RoundsViewController.h"
 #import "POTimer.h"
+#import "TimerViewController.h"
 
 static NSString *reuseID = @"reuseID";
 
 @interface RoundsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property(nonatomic, assign)NSInteger currentRound;
 @property(nonatomic, strong) UITableView *tableView;
 
 @end
@@ -43,9 +43,10 @@ static NSString *reuseID = @"reuseID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // not sure if it should be indexPath or indexPath.row???
     self.currentRound = indexPath.row;
     [self roundSelected];
+    [[POTimer sharedInstance]cancelTimer];
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,16 +56,22 @@ static NSString *reuseID = @"reuseID";
     return cell;
 }
 
-
-
-- (void) roundSelected {
+- (void)roundSelected {
 //    WTF?????
     [POTimer sharedInstance].minutes = [[self timesArray][self.currentRound] integerValue];
     [POTimer sharedInstance].seconds = 0;
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"currentRoundNotification" object:nil];
     
 }
 
+-(void)roundComplete {
+    if (self.currentRound != [self timesArray].count - 1) {
+        self.currentRound++;
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentRound inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self roundSelected];
+    }
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -9,6 +9,7 @@
 #import "POAppDelegate.h"
 #import "TimerViewController.h"
 #import "RoundsViewController.h"
+#import "POTimer.h"
 
 @implementation POAppDelegate
 
@@ -17,16 +18,22 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    UIViewController *timerViewController = [TimerViewController new];
+    
+    TimerViewController *timerViewController = [TimerViewController new];
     timerViewController.tabBarItem.title = @"Timer";
     timerViewController.tabBarItem.image = [UIImage imageNamed:@"timer"];
 
     
-    UIViewController *roundsViewController = [RoundsViewController new];
-    roundsViewController.tabBarItem.title = @"Rounds";
+    [POTimer sharedInstance].minutes = 25;
+    [POTimer sharedInstance].seconds = 0;
+    
+    [timerViewController updateTimerLabel];
+    
+    RoundsViewController *roundsViewController = [RoundsViewController new];
+//    roundsViewController.tabBarItem.title = @"Rounds";
     roundsViewController.tabBarItem.image = [UIImage imageNamed:@"rounds"];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:roundsViewController];
-    roundsViewController.title = @"Pomodoro App";
+    roundsViewController.title = @"Rounds";
 
     
     UITabBarController *tabBarController = [UITabBarController new];
