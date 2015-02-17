@@ -25,11 +25,15 @@
     UIViewController *roundsViewController = [RoundsViewController new];
     roundsViewController.tabBarItem.title = @"Rounds";
     roundsViewController.tabBarItem.image = [UIImage imageNamed:@"rounds"];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:roundsViewController];
+    roundsViewController.title = @"Pomodoro App";
+
     
     UITabBarController *tabBarController = [UITabBarController new];
-    tabBarController.viewControllers = @[timerViewController, roundsViewController];
+    tabBarController.viewControllers = @[timerViewController, navController];
     self.window.rootViewController = tabBarController;
     
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

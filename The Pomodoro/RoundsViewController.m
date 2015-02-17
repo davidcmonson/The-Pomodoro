@@ -7,8 +7,14 @@
 //
 
 #import "RoundsViewController.h"
+#import "POTimer.h"
 
-@interface RoundsViewController ()
+static NSString *reuseID = @"reuseID";
+
+@interface RoundsViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property(nonatomic, assign)NSInteger currentRound;
+@property(nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -17,7 +23,49 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:reuseID];
+    
+    
 }
+
+- (NSArray *) timesArray {
+    NSArray *times = @[@25, @5, @25, @5, @25, @5, @25, @15];
+    return times;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self timesArray].count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // not sure if it should be indexPath or indexPath.row???
+    self.currentRound = indexPath.row;
+    [self roundSelected];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ MINUTES", [self timesArray][indexPath.row]];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    return cell;
+}
+
+
+
+- (void) roundSelected {
+//    WTF?????
+    [POTimer sharedInstance].minutes = [[self timesArray][self.currentRound] integerValue];
+    [POTimer sharedInstance].seconds = 0;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"currentRoundNotification" object:nil];
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
