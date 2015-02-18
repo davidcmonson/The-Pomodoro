@@ -18,7 +18,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    
     TimerViewController *timerViewController = [TimerViewController new];
     timerViewController.tabBarItem.title = @"Timer";
     timerViewController.tabBarItem.image = [UIImage imageNamed:@"timer"];
@@ -40,8 +39,8 @@
     tabBarController.viewControllers = @[timerViewController, navController];
     self.window.rootViewController = tabBarController;
     
-
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iceberg"]];
     [self.window makeKeyAndVisible];
     return YES;
 }

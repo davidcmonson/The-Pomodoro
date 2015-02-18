@@ -31,17 +31,16 @@
 {
     [super viewDidAppear:animated];
     [self updateTimerLabel];
+    
+    
 }
 
 - (void)viewDidLoad {
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"iceberg"]]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    RoundsViewController *roundsView = [[RoundsViewController alloc]
-//                                        init];
-//    
-//    [roundsView setCurrentRound:0];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"secondTickNotification" object:nil];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"currentRoundNotification" object:nil];
+    
     
 }
 
