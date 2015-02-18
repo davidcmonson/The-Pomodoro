@@ -15,4 +15,6 @@
 
 - (void)updateTimerLabel;
 
+- (void)newRound;
+
 @end

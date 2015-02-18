@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface RoundsViewController : UIViewController
+
+
 @property(nonatomic, assign)NSInteger currentRound;
+
+
 - (void) roundSelected;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;

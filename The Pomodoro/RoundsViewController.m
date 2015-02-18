@@ -29,6 +29,7 @@ static NSString *reuseID = @"reuseID";
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:reuseID];
+    [self registerForNotifications];
     
     
 }
@@ -57,16 +58,21 @@ static NSString *reuseID = @"reuseID";
 }
 
 - (void)roundSelected {
-//    WTF?????
     [POTimer sharedInstance].minutes = [[self timesArray][self.currentRound] integerValue];
     [POTimer sharedInstance].seconds = 0;
-
     [[NSNotificationCenter defaultCenter] postNotificationName:@"currentRoundNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"secondTickNotification" object:nil];
     
 }
 
+- (void)registerForNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(roundComplete) name:@"roundCompleteNotification" object:nil];
+}
+
+
+
 -(void)roundComplete {
-    if (self.currentRound != [self timesArray].count - 1) {
+    if (self.currentRound != [self timesArray].count) {
         self.currentRound++;
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentRound inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
         [self roundSelected];

@@ -41,13 +41,16 @@
     self.isOn = NO;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(decreaseSecond) object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:disableButton object:nil];
-    TimerViewController *timerViewController = [TimerViewController new];
-    [timerViewController updateTimerLabel];
+
 }
 
 - (void)endTimer {
     self.isOn = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"roundCompleteNotification" object:nil];
+    TimerViewController *timerViewController = [TimerViewController new];
+    [timerViewController newRound];
+    [timerViewController updateTimerLabel];
+    [self cancelTimer];
 }
 
 -(void)decreaseSecond {
@@ -55,7 +58,7 @@
         self.seconds--;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"secondTickNotification" object:nil];
     } else if (self.minutes > 0) {
-        self.seconds = 59;
+        self.seconds = 60;
         self.minutes--;
     } else if (self.seconds == 0 && self.minutes == 0) {
         [self endTimer];
