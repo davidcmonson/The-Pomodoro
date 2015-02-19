@@ -37,7 +37,15 @@
 
 - (void)viewDidLoad {
     
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"iceberg"]]];
+//    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"snow"]]];
+    
+    UIImage *backgroundImage = [UIImage imageNamed:@"snow"];
+    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,400, self.view.frame.size.height)];
+    view.image = backgroundImage;
+    view.contentMode = UIViewContentModeScaleToFill;
+    [self.view addSubview:view];
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     

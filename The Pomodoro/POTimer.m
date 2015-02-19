@@ -13,6 +13,7 @@
 
 @interface POTimer ()
 
+@property (strong, nonatomic) NSDate *expirationDate;
 
 
 - (void)endTimer;
@@ -34,6 +35,19 @@
 
 - (void)startTimer {
     self.isOn = YES;
+    
+    UILocalNotification *timerExpiredNotification = [UILocalNotification new];
+    
+    NSTimeInterval interval = self.minutes * 60 + self.seconds;
+    self.expirationDate = [NSDate dateWithTimeIntervalSinceNow:interval];
+    timerExpiredNotification.fireDate = self.expirationDate;
+    timerExpiredNotification.timeZone = [NSTimeZone defaultTimeZone];
+    timerExpiredNotification.soundName = UILocalNotificationDefaultSoundName;
+    timerExpiredNotification.alertBody = @"Round Complete. Continue with next round?";
+    timerExpiredNotification.alertAction = @"view";
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:timerExpiredNotification];
+    
     [self isActive];
 }
 
@@ -51,6 +65,7 @@
     [timerViewController newRound];
     [timerViewController updateTimerLabel];
     [self cancelTimer];
+    
 }
 
 -(void)decreaseSecond {

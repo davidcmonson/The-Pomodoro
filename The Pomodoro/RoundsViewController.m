@@ -30,12 +30,13 @@ static NSString *reuseID = @"reuseID";
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:reuseID];
     [self registerForNotifications];
+
     
     
 }
 
 - (NSArray *) timesArray {
-    NSArray *times = @[@25, @5, @25, @5, @25, @5, @25, @15];
+    NSArray *times = @[@0, @5, @25, @5, @25, @5, @25, @15];
     return times;
 }
 
@@ -54,12 +55,19 @@ static NSString *reuseID = @"reuseID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ MINUTES", [self timesArray][indexPath.row]];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
+//    cell.textLabel.font = [UIFont systemFontOfSize:23.0];
+    
+    UIView *colorView = [UIView new];
+    colorView.backgroundColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+    colorView.layer.masksToBounds = YES;
+    cell.selectedBackgroundView = colorView;
+    
     return cell;
 }
 
 - (void)roundSelected {
     [POTimer sharedInstance].minutes = [[self timesArray][self.currentRound] integerValue];
-    [POTimer sharedInstance].seconds = 0;
+    [POTimer sharedInstance].seconds = 5;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"currentRoundNotification" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"secondTickNotification" object:nil];
     

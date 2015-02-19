@@ -23,6 +23,7 @@
 		FC734AC11A929986005096E4 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC734ABF1A929986005096E4 /* TimerViewController.xib */; };
 		FC734AC41A9299A0005096E4 /* RoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC734AC31A9299A0005096E4 /* RoundsViewController.m */; };
 		FC734AC71A92A1F6005096E4 /* POTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = FC734AC61A92A1F6005096E4 /* POTimer.m */; };
+		FCDBC3F41A954EC2005C1C92 /* POAppearanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDBC3F31A954EC2005C1C92 /* POAppearanceController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		FC734AC31A9299A0005096E4 /* RoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundsViewController.m; sourceTree = "<group>"; };
 		FC734AC51A92A1F6005096E4 /* POTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POTimer.h; sourceTree = "<group>"; };
 		FC734AC61A92A1F6005096E4 /* POTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POTimer.m; sourceTree = "<group>"; };
+		FCDBC3F21A954EC2005C1C92 /* POAppearanceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POAppearanceController.h; sourceTree = "<group>"; };
+		FCDBC3F31A954EC2005C1C92 /* POAppearanceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POAppearanceController.m; sourceTree = "<group>"; wrapsLines = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				FC734AC61A92A1F6005096E4 /* POTimer.m */,
 				FC734AC21A9299A0005096E4 /* RoundsViewController.h */,
 				FC734AC31A9299A0005096E4 /* RoundsViewController.m */,
+				FCDBC3F21A954EC2005C1C92 /* POAppearanceController.h */,
+				FCDBC3F31A954EC2005C1C92 /* POAppearanceController.m */,
 				7141B2F7193DBDFD0084F9F1 /* Images.xcassets */,
 				7141B2EC193DBDFD0084F9F1 /* Supporting Files */,
 			);
@@ -259,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCDBC3F41A954EC2005C1C92 /* POAppearanceController.m in Sources */,
 				FC734AC01A929986005096E4 /* TimerViewController.m in Sources */,
 				7141B2F2193DBDFD0084F9F1 /* main.m in Sources */,
 				FC734AC71A92A1F6005096E4 /* POTimer.m in Sources */,
